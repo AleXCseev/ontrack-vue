@@ -8,22 +8,21 @@
             >
                 {{ timelineItem.hour }}:00
             </a>
-            <BaseSelect :options="options" :placeholder="'Rest'" :selected="selectedActivityId"/>
+            <BaseSelect @select="selectedActivityId = $event" :options="options" :placeholder="'Rest'" :selected="selectedActivityId"/>
            
     </li>
 </template>
 
 <script setup>
-    import { HOURS_IN_DAY } from "../constants";
+    import { ref } from "vue";
+    import { isTimelineItemValid } from "../validators";
     import BaseSelect from "./BaseSelect.vue"
    
     const props = defineProps({
         timelineItem: {
             required: true,
             type: Object,
-            validator({ hour }) {
-                return typeof hour === 'number' && hour >= 0 && hour < HOURS_IN_DAY
-            }
+            validator: isTimelineItemValid
         }
     });
 
@@ -42,7 +41,7 @@
         },
     ]
 
-    const selectedActivityId = 2
+    const selectedActivityId = ref(1)
 
     const hourLinkClasses = [
         "absolute -top-4 left-1/2 -translate-x-1/2 rounded font-mono text-lg",
