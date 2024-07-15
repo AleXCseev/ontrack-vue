@@ -12,6 +12,18 @@ export function isTimelineItemValid({ hour }) {
     return isHourValid(hour)
 }
 
+export function isActivityValid(activity) {
+    return isNotEmptyString(activity)
+}
+
+export function validateActivities(activities) {
+    return activities.every(isActivityValid)
+}
+
+function isNotEmptyString(value) {
+    return isString(value) && value.length > 0
+}
+
 export function validateSelectOptions(options) {
     return options.every(isSelectOptionValid);
 }

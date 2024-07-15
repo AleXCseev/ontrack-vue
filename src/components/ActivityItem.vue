@@ -7,7 +7,13 @@
             <span class="truncate text-xl">{{ activity }}</span>
         </div>
         <div>
-            <BaseSelect :selected="secondsToComplite" class="font-mono" placeholder="h:mm" :options="periodSelectOptions" />
+            <BaseSelect 
+                :selected="secondsToComplite" 
+                class="font-mono" 
+                placeholder="h:mm" 
+                :options="PERIOD_SELECT_OPTIONS" 
+                @select="secondsToComplite = $event"
+            />
         </div>
     </li> 
 </template>
@@ -17,28 +23,17 @@ import { ref } from "vue";
 import { TrashIcon } from "@heroicons/vue/24/solid";
 import BaseButton from "./BaseButton.vue";
 import BaseSelect from "./BaseSelect.vue";
+import { PERIOD_SELECT_OPTIONS } from "../constants";
+import { isActivityValid } from "../validators"
 
 defineProps({
     activity: {
         required: true,
         type: String,
+        validator: isActivityValid
     },
 })
 
-const secondsToComplite = ref(15)
+const secondsToComplite = ref(null)
 
-const periodSelectOptions = [
-    {
-        value: 15,
-        label: '0:15'
-    },
-    {
-        value: 30,
-        label: '0:30'
-    },
-    {
-        value: 45,
-        label: '0:45'
-    },
-]
 </script>
