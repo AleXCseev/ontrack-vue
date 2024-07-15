@@ -4,6 +4,14 @@ export const PAGE_TIMELINE = 'timeline'
 export const PAGE_ACTIVITIES = 'activities'
 export const PAGE_PROGRESS = 'progress'
 
+export const BUTTON_TYPE_DENGER = 'danger'
+export const BUTTON_TYPE_NEUTRAL = 'neutral'
+
+export const BUTTON_TYPES = [
+    BUTTON_TYPE_NEUTRAL,
+    BUTTON_TYPE_DENGER,
+]
+
 
 export  const NAV_ITEMS = {
     [PAGE_TIMELINE]: ClockIcon,

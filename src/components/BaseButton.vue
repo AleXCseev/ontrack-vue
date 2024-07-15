@@ -6,16 +6,20 @@
 
 <script setup>
 
+import { BUTTON_TYPE_DENGER, BUTTON_TYPE_NEUTRAL } from '../constants';
+import { isButtonTypeValid } from '../validators'
+
 defineProps({
     type: {
-        default: 'neutral',
-        type: string,
+        default: BUTTON_TYPE_NEUTRAL,
+        type: String,
+        validator: isButtonTypeValid
     }
 })
 
 const typeClasses = {
-    neutral: 'bg-gray-100 enabled:hover:bg-gray-200',
-    danger: 'bg-red-500 enabled:hover:bg-red-600 text-white'
+    [BUTTON_TYPE_NEUTRAL]: 'bg-gray-100 enabled:hover:bg-gray-200',
+    [BUTTON_TYPE_DENGER]: 'bg-red-500 enabled:hover:bg-red-600 text-white'
 }
 
 </script>
