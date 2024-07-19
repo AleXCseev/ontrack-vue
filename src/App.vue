@@ -3,8 +3,17 @@
   <TheHeader @navigate="goTo($event)"/>
 
   <main class="flex flex-grow flex-col">
-    <TheTimeline :timeline-items="timelineItems" v-show="currentPage === PAGE_TIMELINE"/>
-    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities"/>
+    <TheTimeline 
+      :timeline-items="timelineItems" 
+      v-show="currentPage === PAGE_TIMELINE"
+      :activity-select-options="activitySelectOptions"
+    />
+    <TheActivities 
+      v-show="currentPage === PAGE_ACTIVITIES" 
+      :activities="activities"
+      @delete-activity="deleteActivity"
+      @create-activity="createActivity"
+    />
     <TheProgress v-show="currentPage === PAGE_PROGRESS"/>
   </main>
   
@@ -20,16 +29,27 @@
   import TheActivities from './pages/TheActivities.vue';
   import TheProgress from './pages/TheProgress.vue';
   import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants';
-  import { normalizePageHash, generateTimelineItems } from "./functions"
+  import { normalizePageHash, generateTimelineItems, generateActivitySelectOptions} from "./functions"
 
   const timelineItems = generateTimelineItems()
-  const activities = ['Codding', 'Reading', 'Training'];
+
+  const activities = ref(['Codding', 'Reading', 'Training']);
+
+  const activitySelectOptions = generateActivitySelectOptions(activities.value);
 
   const currentPage = ref(normalizePageHash())
 
 
   function goTo(page) {
     currentPage.value = page
+  }
+
+  function deleteActivity(activity) {
+    activities.value.splice(activities.value.indexOf(activity), 1)
+  }
+
+  function createActivity(activity) {
+    activities.value.push(activity)
   }
 
 </script>

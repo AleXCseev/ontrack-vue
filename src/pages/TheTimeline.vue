@@ -1,7 +1,12 @@
 <template>
     <div class="mt-7">
         <ul>
-           <TimelineItem v-for="timelineItem in timelineItems" :key="timelineItem.hour" :timeline-item="timelineItem" />
+           <TimelineItem 
+                v-for="timelineItem in timelineItems" 
+                :key="timelineItem.hour" 
+                :timeline-item="timelineItem" 
+                :activity-select-options="activitySelectOptions"
+            />
         </ul>
     </div>
 </template>
@@ -15,6 +20,11 @@
            required: true,
            type: Array, 
            validator: validateTimelineItems,
+        },
+        activitySelectOptions: {
+            required: true,
+            type: Array,
+            // validator:
         }
     })
 </script>

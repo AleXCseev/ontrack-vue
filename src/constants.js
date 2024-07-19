@@ -6,10 +6,12 @@ export const PAGE_PROGRESS = 'progress'
 
 export const BUTTON_TYPE_DENGER = 'danger'
 export const BUTTON_TYPE_NEUTRAL = 'neutral'
+export const BUTTON_TYPE_PRIMARY = 'primary'
 
 export const BUTTON_TYPES = [
     BUTTON_TYPE_NEUTRAL,
     BUTTON_TYPE_DENGER,
+    BUTTON_TYPE_PRIMARY,
 ]
 
 
