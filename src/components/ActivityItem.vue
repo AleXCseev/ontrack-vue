@@ -4,7 +4,7 @@
             <BaseButton :type="BUTTON_TYPE_DENGER" @click="emit('delete')">
                 <TrashIcon class="h-8"/>
             </BaseButton>
-            <span class="truncate text-xl">{{ activity }}</span>
+            <span class="truncate text-xl">{{ activity.name }}</span>
         </div>
         <div>
             <BaseSelect 
@@ -29,7 +29,7 @@ import { isActivityValid, isUndefined } from "../validators"
 defineProps({
     activity: {
         required: true,
-        type: String,
+        type: Object,
         validator: isActivityValid
     },
 })

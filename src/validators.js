@@ -16,8 +16,12 @@ export function isTimelineItemValid({ hour }) {
     return isHourValid(hour)
 }
 
-export function isActivityValid(activity) {
-    return isNotEmptyString(activity)
+export function isActivityValid({ id, name, secondsToComplite }) {
+    return [
+        isNotEmptyString(id),
+        isNotEmptyString(name),
+        isNumber(secondsToComplite)
+    ].every(Boolean)
 }
 
 export function validateActivities(activities) {
@@ -53,7 +57,7 @@ function isBetween(value, start, end) {
 }
 
 function isSelectOptionValid({value, label}) {
-    return isNumber(value) && isNotEmptyString(label)
+    return isNumber(value) || isNotEmptyString(value) && isNotEmptyString(label)
 } 
 
 function isNull(value) {
