@@ -7,6 +7,7 @@
       :timeline-items="timelineItems" 
       v-show="currentPage === PAGE_TIMELINE"
       :activity-select-options="activitySelectOptions"
+      :activities="activities"
     />
     <TheActivities 
       v-show="currentPage === PAGE_ACTIVITIES" 
@@ -22,7 +23,7 @@
 </template>
 
 <script setup>
-  import {ref} from 'vue'
+  import { ref, computed } from 'vue'
   import TheHeader from './components/TheHeader.vue'
   import TheNav from './components/TheNav.vue'
   import TheTimeline from './pages/TheTimeline.vue';
@@ -35,7 +36,7 @@
 
   const activities = ref(generateActivities());
 
-  const activitySelectOptions = generateActivitySelectOptions(activities.value);
+  const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value));
 
   const currentPage = ref(normalizePageHash())
 

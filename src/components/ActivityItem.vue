@@ -38,6 +38,6 @@ const emit = defineEmits({
     delete: isUndefined
 })
 
-const secondsToComplite = ref(null)
+const secondsToComplite = ref(0)
 
 </script>

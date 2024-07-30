@@ -60,10 +60,13 @@ function isSelectOptionValid({value, label}) {
     return isNumber(value) || isNotEmptyString(value) && isNotEmptyString(label)
 } 
 
-function isNull(value) {
+export function isNull(value) {
     return value === null
 }
 
+export function isSelectValueValid(value) {
+    return isNotEmptyString(value) || isNumberOrNull(value)
+}
 
 function isNumber(value) {
     return typeof value === 'number'
