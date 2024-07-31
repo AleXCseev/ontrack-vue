@@ -15,6 +15,7 @@
       :activities="activities"
       @delete-activity="deleteActivity"
       @create-activity="createActivity"
+      @set-activity-seconds-to-complite="setActivitySecondsToComplite"
     />
     <TheProgress v-show="currentPage === PAGE_PROGRESS"/>
   </main>
@@ -60,8 +61,12 @@
     activities.value.push(activity)
   }
 
-  function setTimelineItemActivity({ timelineItem, activity }) {
-    timelineItem.activityId = activity?.id || null
+  function setTimelineItemActivity(timelineItem, activity) {
+    timelineItem.activityId = activity.id
+  }
+
+  function setActivitySecondsToComplite(activity, secondsToComplite) {
+    activity.secondsToComplite = secondsToComplite
   }
 
 </script>

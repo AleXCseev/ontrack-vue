@@ -17,6 +17,10 @@ export function isTimelineItemValid({ hour }) {
 }
 
 export function isActivityValid({ id, name, secondsToComplite }) {
+    if(isNull(id)) {
+        return true;
+    }
+
     return [
         isNotEmptyString(id),
         isNotEmptyString(name),
@@ -68,10 +72,10 @@ export function isSelectValueValid(value) {
     return isNotEmptyString(value) || isNumberOrNull(value)
 }
 
-function isNumber(value) {
+export function isNumber(value) {
     return typeof value === 'number'
 }
 
-function isString(value) {
+export function isString(value) {
     return typeof value === 'string'
 }
