@@ -1,4 +1,4 @@
-import { PAGE_TIMELINE, HOURS_IN_DAY, MIDNIGHT_HOUR, SECONDS_IN_HOUR, SECONDS_IN_MINUTES, MINUTES_IN_HOUR } from './constants';
+import { PAGE_TIMELINE, HOURS_IN_DAY, MIDNIGHT_HOUR, SECONDS_IN_HOUR, SECONDS_IN_MINUTES, MINUTES_IN_HOUR, MILLISECONDS_IN_SECOND } from './constants';
 import { isPageValid, isNull } from './validators';
 
 export function normalizePageHash() {
@@ -19,7 +19,8 @@ export function generateTimelineItems () {
   for (let hour = MIDNIGHT_HOUR; hour < HOURS_IN_DAY; hour++) {
       timelineItems.push({ 
         hour,
-        activityId: null
+        activityId: null,
+        activitySeconds: 0,
       });
   }
 
@@ -59,5 +60,12 @@ function generatePeriodSelectOptionsLabel(periodInMinutes) {
   const hours = Math.floor(periodInMinutes / MINUTES_IN_HOUR).toString().padStart(2, 0)
   const minutes = (periodInMinutes % MINUTES_IN_HOUR).toString().padStart(2, 0)
   return `${hours}:${minutes}`
+}
+
+export function formatSeconds(seconds) {
+  const date = new Date()
+  date.setTime(Math.abs(seconds) * MILLISECONDS_IN_SECOND)
+  const utc = date.toUTCString()
+  return utc.substring(utc.indexOf(':') - 2,  utc.indexOf(':') + 6)
 }
  
