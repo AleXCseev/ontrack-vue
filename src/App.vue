@@ -34,14 +34,13 @@
   import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants';
   import { normalizePageHash, generateTimelineItems, generateActivitySelectOptions, generateActivities } from "./functions"
 
-  const timelineItems = ref(generateTimelineItems())
+  const currentPage = ref(normalizePageHash())
 
   const activities = ref(generateActivities());
 
+  const timelineItems = ref(generateTimelineItems(activities.value))
+
   const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value));
-
-  const currentPage = ref(normalizePageHash())
-
 
   function goTo(page) {
     currentPage.value = page
@@ -51,6 +50,7 @@
     timelineItems.value.forEach((timelineItem) => {
       if(timelineItem.activityId === activity.id) {
         timelineItem.activityId = null
+        timelineItem.activitySeconds = 0
       }
     })
 
