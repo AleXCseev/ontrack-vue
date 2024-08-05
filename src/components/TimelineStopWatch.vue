@@ -1,26 +1,27 @@
 <template>
     <div class="flex w-full gap-2">
-        <BaseButton :type="BUTTON_TYPE_DANGER">
+        <BaseButton :type="BUTTON_TYPE_DANGER" @click="reset">
             <ArrowPathIcon class="h-8"/>
         </BaseButton>
-        <div class="flex flex-grow items-center rounded bg-grey-100 px-2 font-mono text-3xl">{{ formatSeconds(seconds) }}</div>
-        <BaseButton :type="BUTTON_TYPE_WARNING">
+        <div class="flex flex-grow items-center rounded bg-gray-100 px-2 font-mono text-3xl">{{ formatSeconds(seconds) }}</div>
+        <BaseButton v-if="isRunning" :type="BUTTON_TYPE_WARNING" @click="stop">
             <PauseIcon class="h-8"/>
         </BaseButton>
-        <BaseButton :type="BUTTON_TYPE_SUCCESS">
+        <BaseButton v-else :type="BUTTON_TYPE_SUCCESS" @click="start">
             <PlayIcon class="h-8"/>
         </BaseButton>
     </div>
 </template>
 
 <script setup>
-import BaseButton from './BaseButton.vue'
+import { ref } from "vue";
+import BaseButton from './BaseButton.vue';
 import { formatSeconds } from '../functions';
-import { BUTTON_TYPE_DANGER, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING } from "../constants";
+import { BUTTON_TYPE_DANGER, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, MILLISECONDS_IN_SECOND } from "../constants";
 import { ArrowPathIcon, PauseIcon, PlayIcon } from "@heroicons/vue/24/solid";
 import { isNumber } from '../validators';
 
-defineProps({
+const props = defineProps({
     seconds: {
         default: 0,
         type: Number,
@@ -28,4 +29,24 @@ defineProps({
     }
 })
 
+const seconds = ref(props.seconds)
+const isRunning = ref(false)
+
+function start() {
+    isRunning.value = setInterval(() => {
+        seconds.value++
+    }, MILLISECONDS_IN_SECOND)
+}
+
+function stop() {
+    clearInterval(isRunning.value)
+
+    isRunning.value = false
+}
+
+function reset() {
+    stop()
+
+    seconds.value = 0;
+}
 </script>
