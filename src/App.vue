@@ -4,10 +4,7 @@
 
   <main class="flex flex-grow flex-col">
     <TheTimeline 
-      :timeline-items="timelineItems" 
       v-show="currentPage === PAGE_TIMELINE"
-      :activity-select-options="activitySelectOptions"
-      :activities="activities"
       :current-page="currentPage"
       ref="timeline"
       @set-timiline-item-activity="setTimelineItemActivity"
@@ -15,7 +12,6 @@
     <TheActivities 
       v-show="currentPage === PAGE_ACTIVITIES" 
       :activities="activities"
-      :timeline-items="timelineItems"
       @delete-activity="deleteActivity"
       @create-activity="createActivity"
       @set-activity-seconds-to-complite="setActivitySecondsToComplite"
@@ -28,7 +24,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from 'vue'
+  import { ref, computed, provide } from 'vue'
   import TheHeader from './components/TheHeader.vue'
   import TheNav from './components/TheNav.vue'
   import TheTimeline from './pages/TheTimeline.vue';
@@ -78,8 +74,16 @@
     timelineItem.activityId = activity.id
   }
 
+  function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
+    timelineItem.activitySeconds += activitySeconds
+  }
+
   function setActivitySecondsToComplite(activity, secondsToComplite) {
     activity.secondsToComplite = secondsToComplite
   }
 
+  provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
+  provide('timelineItems', timelineItems.value)
+  provide('activities', activities.value)
+  provide('activitySelectOptions', activitySelectOptions.value)
 </script>

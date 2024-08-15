@@ -14,7 +14,7 @@
                 :options="PERIOD_SELECT_OPTIONS" 
                 @select="emit('setSecondsToComplite', $event || 0)"
             />
-            <ActivitySecondsToComplete :activity="activity" :timeline-items="timelineItems" v-if="activity.secondsToComplite" /> 
+            <ActivitySecondsToComplete :activity="activity" v-if="activity.secondsToComplite" /> 
         </div>
     </li> 
 </template>
@@ -25,7 +25,7 @@ import BaseButton from "./BaseButton.vue";
 import BaseSelect from "./BaseSelect.vue";
 import ActivitySecondsToComplete from "./ActivitySecondsToComplete.vue";
 import { PERIOD_SELECT_OPTIONS, BUTTON_TYPE_DANGER } from "../constants";
-import { isActivityValid, isUndefined, isNumber, validateTimelineItems } from "../validators"
+import { isActivityValid, isUndefined, isNumber } from "../validators"
 
 
 defineProps({
@@ -33,11 +33,6 @@ defineProps({
         required: true,
         type: Object,
         validator: isActivityValid
-    },
-    timelineItems: {
-        required: true,
-        type: Array,
-        validator: validateTimelineItems
     }
 })
 

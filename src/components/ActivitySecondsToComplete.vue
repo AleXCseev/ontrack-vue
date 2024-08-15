@@ -5,22 +5,19 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, inject } from "vue";
 import { formatSeconds, getTotalActivitySeconds } from "../functions";
-import { isActivityValid, validateTimelineItems } from "../validators";
+import { isActivityValid } from "../validators";
 
 const props = defineProps({
     activity: {
         required: true,
         type: Object,
         validator: isActivityValid
-    },
-    timelineItems: {
-        required: true,
-        type: Array,
-        validator: validateTimelineItems
     }
 })
+
+const timelineItems = inject('timelineItems')
 
 const classes = computed(() => `flex items-center rounded bg-purple-100 px-2 font-mono text-xl text-purple-600 ${colorClasses.value}`)
 
@@ -32,6 +29,6 @@ const seconds = computed(() => `${sign.value}${formatSeconds(secondsDiff.value)}
 
 const sign = computed(() => secondsDiff.value >= 0 ? '+' : '-')
 
-const secondsDiff = computed(() => getTotalActivitySeconds(props.activity, props.timelineItems) - props.activity.secondsToComplite)
+const secondsDiff = computed(() => getTotalActivitySeconds(props.activity, timelineItems) - props.activity.secondsToComplite)
 
 </script>
