@@ -31,7 +31,7 @@
   import TheActivities from './pages/TheActivities.vue';
   import TheProgress from './pages/TheProgress.vue';
   import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants';
-  import { normalizePageHash, generateTimelineItems, generateActivitySelectOptions, generateActivities } from "./functions"
+  import { normalizePageHash, generateTimelineItems, generateActivitySelectOptions, generatePeriodSelectOptions, generateActivities } from "./functions"
 
   const currentPage = ref(normalizePageHash())
 
@@ -86,4 +86,5 @@
   provide('timelineItems', timelineItems.value)
   provide('activities', activities.value)
   provide('activitySelectOptions', activitySelectOptions.value)
+  provide('periodSelectOptions', generatePeriodSelectOptions())
 </script>
