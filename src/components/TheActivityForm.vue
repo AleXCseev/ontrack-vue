@@ -12,20 +12,16 @@
 </template>
 
 <script setup>
-import { nextTick, ref } from "vue"
-import { isActivityValid } from "../validators";
+import { inject, nextTick, ref } from "vue"
 import { id } from "../functions";
 import BaseButton from "./BaseButton.vue";
 import { PlusIcon } from "@heroicons/vue/24/solid";
 
-const emit = defineEmits({
-    submit: isActivityValid
-})
-
 const name = ref('')
 
 function submit() {
-    emit('submit', {
+
+    createActivity({
         id: id(),
         name: name.value,
         secondsToComplite: 0,
@@ -37,4 +33,5 @@ function submit() {
         window.scrollTo(0, document.body.scrollHeight)
     })   
 }
+const createActivity = inject('createActivity')
 </script>

@@ -4,7 +4,7 @@
         >
             <TimelineHour @click.prevent="emit('scrollToHour', timelineItem.hour)" :hour="timelineItem.hour"/>
             <BaseSelect 
-                @select="selectActivity" 
+                @select="setTimelineItemActivity(timelineItem, $event)" 
                 :options="activitySelectOptions" 
                 :placeholder="'Rest'" 
                 :selected="timelineItem.activityId"
@@ -18,8 +18,7 @@
     import BaseSelect from "./BaseSelect.vue"
     import TimelineHour from "./TimelineHour.vue"
     import TimelineStopWatch from "./TimelineStopWatch.vue";
-    import { NULLABLE_ACTIVITY } from "../constants";
-    import { isActivityValid, isTimelineItemValid, isHourValid } from "../validators"
+    import { isTimelineItemValid, isHourValid } from "../validators"
 
     const props = defineProps({
         timelineItem: {
@@ -29,24 +28,12 @@
         }
     });
 
-    const activities = inject('activities')
     const activitySelectOptions = inject('activitySelectOptions')
+    const setTimelineItemActivity = inject('setTimelineItemActivity')
 
     const emit = defineEmits({
-        selectActivity: isActivityValid,
         scrollToHour: isHourValid,
     })
-
-    function selectActivity(id) {
-        emit(
-            'selectActivity', 
-            findActivityById(id)
-        )
-    }
-
-    function findActivityById(id) {
-        return activities.find((activity) => activity.id === id) || NULLABLE_ACTIVITY
-    }
 
     
 </script>
