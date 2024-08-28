@@ -1,17 +1,5 @@
-import { PAGE_TIMELINE, HOURS_IN_DAY, SECONDS_IN_HOUR, SECONDS_IN_MINUTES, MINUTES_IN_HOUR, MILLISECONDS_IN_SECOND } from './constants';
-import { isPageValid, isNull } from './validators';
-
-export function normalizePageHash() {
-  const page = window.location.hash.slice(1)
-
-  if(isPageValid(page)) {
-    return page
-  }
-
-  window.location.hash = PAGE_TIMELINE
-
-  return PAGE_TIMELINE
-}
+import { HOURS_IN_DAY, SECONDS_IN_HOUR, SECONDS_IN_MINUTES, MINUTES_IN_HOUR, MILLISECONDS_IN_SECOND } from './constants';
+import { isNull } from './validators';
 
 export function getTotalActivitySeconds(activity, timelineItems) {
   return timelineItems
