@@ -12,7 +12,7 @@
                 class="font-mono grow" 
                 placeholder="hh:mm" 
                 :options="periodSelectOptions" 
-                @select="setActivitySecondsToComplite(activity, $event || 0)"
+                @select="setActivitySecondsToComplite(activity, $event)"
             />
             <ActivitySecondsToComplete :activity="activity" v-if="activity.secondsToComplite" /> 
         </div>
@@ -27,6 +27,7 @@ import ActivitySecondsToComplete from "./ActivitySecondsToComplete.vue";
 import { BUTTON_TYPE_DANGER } from "../constants";
 import { isActivityValid } from "../validators"
 import { inject } from "vue";
+import { deleteActivityKey, periodSelectOptionsKey, setActivitySecondsToCompliteKey } from "../keys";
 
 
 defineProps({
@@ -37,8 +38,8 @@ defineProps({
     }
 })
 
-const periodSelectOptions = inject('periodSelectOptions')
-const setActivitySecondsToComplite = inject('setActivitySecondsToComplite')
-const deleteActivity = inject('deleteActivity')
+const periodSelectOptions = inject(periodSelectOptionsKey)
+const setActivitySecondsToComplite = inject(setActivitySecondsToCompliteKey)
+const deleteActivity = inject(deleteActivityKey)
 
 </script>

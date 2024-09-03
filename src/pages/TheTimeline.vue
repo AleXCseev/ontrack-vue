@@ -6,7 +6,7 @@
                 :key="timelineItem.hour" 
                 :timeline-item="timelineItem" 
                 ref="timelineItemRefs"
-                @scroll-to-hour="scrollToHour"
+                @scroll-to-hour="scrollToHour(timelineItem.hour)"
             />
         </ul>
     </div>
@@ -17,10 +17,12 @@
     import { nextTick, ref, watchPostEffect, inject } from "vue";
     import TimelineItem from "../components/TimelineItem.vue";
     import { PAGE_TIMELINE, MIDNIGHT_HOUR } from "../constants";
+    import { timelineItemsKey } from "../keys";
+    import { currentHour } from "../functions";
 
     defineExpose( {scrollToHour} )
 
-    const timelineItems = inject('timelineItems')
+    const timelineItems = inject(timelineItemsKey)
     const timelineItemRefs = ref([])
 
     watchPostEffect( async () => {
@@ -32,7 +34,7 @@
     })
 
     function scrollToHour(hour = null, isSmooth = true) {
-        hour ??= new Date().getHours()
+        hour ??= currentHour()
 
         const el = hour === MIDNIGHT_HOUR ? document.body : timelineItemRefs.value[hour -1].$el
 

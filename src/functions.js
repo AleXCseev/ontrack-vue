@@ -64,4 +64,9 @@ export function formatSeconds(seconds) {
 }
 
 
+export function currentHour() {
+  return new Date().getHours()
+}
+
+
  
