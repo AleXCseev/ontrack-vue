@@ -14,13 +14,13 @@
 </template>
 
 <script setup>
-    import { inject } from "vue";
     import BaseSelect from "./BaseSelect.vue"
     import TimelineHour from "./TimelineHour.vue"
     import TimelineStopWatch from "./TimelineStopWatch.vue";
     import { isTimelineItemValid, isUndefined } from "../validators"
-    import { activitySelectOptionsKey, setTimelineItemActivityKey } from "../keys";
-
+    import { setTimelineItemActivity } from "../timelineItems";
+    import { activitySelectOptions } from "../activities";
+ 
     const props = defineProps({
         timelineItem: {
             required: true,
@@ -29,12 +29,9 @@
         }
     });
 
-    const activitySelectOptions = inject(activitySelectOptionsKey)
-    const setTimelineItemActivity = inject(setTimelineItemActivityKey)
 
     const emit = defineEmits({
         scrollToHour: isUndefined,
     })
 
-    
 </script>
