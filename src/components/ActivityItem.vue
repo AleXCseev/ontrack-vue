@@ -12,7 +12,7 @@
                 class="font-mono grow" 
                 placeholder="hh:mm" 
                 :options="PERIOD_SELECT_OPTIONS" 
-                @select="setActivitySecondsToComplite(activity, $event)"
+                @select="updateActivity(activity, { secondsToComplite: $event || 0 })"
             />
             <ActivitySecondsToComplete :activity="activity" v-if="activity.secondsToComplite" /> 
         </div>
@@ -26,7 +26,7 @@ import BaseSelect from "./BaseSelect.vue";
 import ActivitySecondsToComplete from "./ActivitySecondsToComplete.vue";
 import { BUTTON_TYPE_DANGER, PERIOD_SELECT_OPTIONS } from "../constants";
 import { isActivityValid } from "../validators"
-import { setActivitySecondsToComplite, deleteActivity } from "../activities"
+import { updateActivity, deleteActivity } from "../activities"
 import { resetTimelineItemActivities } from "../timelineItems";
 
 

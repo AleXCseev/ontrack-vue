@@ -7,8 +7,6 @@ export const activities = ref(generateActivities());
 export const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value));
 
 export function deleteActivity(activity) {
-  
-
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
 
@@ -16,8 +14,8 @@ export function createActivity(activity) {
   activities.value.push(activity)
 }
 
-export function setActivitySecondsToComplite(activity, secondsToComplite) {
-    activity.secondsToComplite = secondsToComplite || 0
+export function updateActivity(activity, fields) {
+  return Object.assign(activity, fields)
 }
 
 function generateActivitySelectOptions(activities) {
