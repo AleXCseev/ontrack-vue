@@ -4,7 +4,7 @@
         >
             <TimelineHour @click.prevent="emit('scrollToHour')" :hour="timelineItem.hour"/>
             <BaseSelect 
-                @select="setTimelineItemActivity(timelineItem, $event)" 
+                @select="updateTimelineItem(timelineItem, { activityId: $event })" 
                 :options="activitySelectOptions" 
                 :placeholder="'Rest'" 
                 :selected="timelineItem.activityId"
@@ -18,7 +18,7 @@
     import TimelineHour from "./TimelineHour.vue"
     import TimelineStopWatch from "./TimelineStopWatch.vue";
     import { isTimelineItemValid, isUndefined } from "../validators"
-    import { setTimelineItemActivity } from "../timelineItems";
+    import { updateTimelineItem } from "../timelineItems";
     import { activitySelectOptions } from "../activities";
  
     const props = defineProps({

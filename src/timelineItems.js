@@ -4,13 +4,17 @@ import { HOURS_IN_DAY } from "./constants";
 
 export const timelineItems = ref(generateTimelineItems())
 
-export function setTimelineItemActivity(timelineItem, activityId) {
-    timelineItem.activityId = activityId
+export function updateTimelineItem(timelineItem, fields) {
+    return Object.assign(timelineItem, fields)
 }
 
-export function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
-    timelineItem.activitySeconds = activitySeconds
-}
+// export function setTimelineItemActivity(timelineItem, activityId) {
+//     timelineItem.activityId = activityId
+// }
+
+// export function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
+//     timelineItem.activitySeconds = activitySeconds
+// }
 
 export function resetTimelineItemActivities(activity) {
     timelineItems.value.forEach((timelineItem) => {

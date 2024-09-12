@@ -6,11 +6,9 @@
     <TheTimeline 
       v-show="currentPage === PAGE_TIMELINE"
       ref="timelineRef"
-      @set-timiline-item-activity="setTimelineItemActivity"
     />
     <TheActivities 
       v-show="currentPage === PAGE_ACTIVITIES" 
-      @delete-activity="deleteActivity"
     />
     <TheProgress v-show="currentPage === PAGE_PROGRESS"/>
   </main>
@@ -21,8 +19,6 @@
 
 <script setup>
   import { currentPage, timelineRef } from './router';
-  import { deleteActivity } from './activities'
-  import { setTimelineItemActivity } from './timelineItems'
   import TheHeader from './components/TheHeader.vue'
   import TheNav from './components/TheNav.vue'
   import TheTimeline from './pages/TheTimeline.vue';
