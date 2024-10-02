@@ -1,4 +1,5 @@
 import { NAV_ITEMS, HOURS_IN_DAY, MIDNIGHT_HOUR, BUTTON_TYPES } from "./constants"
+import { ICONS } from "./icons"
 
 export function isPageValid(page) {
     return NAV_ITEMS.some(navItem => navItem.page === page)
@@ -10,6 +11,10 @@ export function isNavItemValid(navItem) {
 
 export function isButtonTypeValid(type) {
     return BUTTON_TYPES.includes(type)
+}
+
+export function isIconValid(icon) {
+    return Object.keys(ICONS).includes(icon)
 }
 
 export function validateTimelineItems(timelineItems) {
