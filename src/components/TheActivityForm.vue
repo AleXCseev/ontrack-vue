@@ -6,7 +6,7 @@
             class="w-full rounded border px-4 text-xl" placeholder="Activity name"
         >
         <BaseButton :disabled="name.trim() === ''">
-            <BaseIcon name="Plus" class="h-8"/>
+            <BaseIcon :name="ICON_PLUS" class="h-8"/>
         </BaseButton>
     </form>
 </template>
@@ -17,6 +17,7 @@ import { id } from "../functions";
 import BaseButton from "./BaseButton.vue";
 import BaseIcon from "./BaseIcon.vue";
 import { createActivity } from "../activities";
+import { ICON_PLUS } from "../icons";
 
 const name = ref('')
 

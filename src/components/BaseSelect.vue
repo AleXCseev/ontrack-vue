@@ -1,7 +1,7 @@
 <template>
     <div class="flex gap-2">
         <BaseButton @click="select(null)" :type="BUTTON_TYPE_NEUTRAL">
-            <BaseIcon name="XMark" class="h-8"/>
+            <BaseIcon :name="ICON_XMARK" class="h-8"/>
         </BaseButton>
         <select class="w-full truncate rounded bg-gray-100 py-1 px-2 text-2xl" @change="select($event.target.value)">
             <option :selected="isNotSelected" disabled value="">{{ placeholder }}</option>
@@ -19,6 +19,7 @@
     import { normalizeSelectValue } from "../functions";
     import { computed } from "vue";
     import { BUTTON_TYPE_NEUTRAL } from "../constants";
+    import { ICON_XMARK } from "../icons";
 
     const props = defineProps({
         selected: {

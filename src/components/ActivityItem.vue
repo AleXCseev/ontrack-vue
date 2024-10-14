@@ -2,13 +2,12 @@
      <li class="flex flex-col gap-2 p-4">
         <div class="flex items-center gap-2">
             <BaseButton :type="BUTTON_TYPE_DANGER" @click="deleteAndResetActivity(activity)">
-                <BaseIcon name="Trash" class="h-8"/>
+                <BaseIcon :name="ICON_TRASH" class="h-8"/>
             </BaseButton>
             <span class="truncate text-xl">{{ activity.name }}</span>
         </div>
         <div class="flex gap-2">
-            <BaseSelect 
-                :selected="activity.secondsToComplite || null" 
+            <BaseSelect
                 class="font-mono grow" 
                 placeholder="hh:mm" 
                 :options="PERIOD_SELECT_OPTIONS" 
@@ -28,6 +27,7 @@ import { BUTTON_TYPE_DANGER, PERIOD_SELECT_OPTIONS } from "../constants";
 import { isActivityValid } from "../validators"
 import { updateActivity, deleteActivity } from "../activities"
 import { resetTimelineItemActivities } from "../timelineItems";
+import { ICON_TRASH } from "../icons";
 
 
 defineProps({

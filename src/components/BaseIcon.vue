@@ -1,8 +1,9 @@
 <template>
-    <component :is="icons[name]"/>
+    <component :is="ICONS[name]"/>
 </template>
 
 <script setup>
+import { ICONS } from "../icons";
 import { isIconValid } from "../validators"
 
 defineProps({
