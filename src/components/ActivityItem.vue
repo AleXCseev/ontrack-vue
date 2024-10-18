@@ -11,9 +11,9 @@
                 class="font-mono grow" 
                 placeholder="hh:mm" 
                 :options="PERIOD_SELECT_OPTIONS" 
-                @select="updateActivity(activity, { secondsToComplite: $event || 0 })"
+                @select="updateActivity(activity, { secondsToComplete: $event || 0 })"
             />
-            <ActivitySecondsToComplete :activity="activity" v-if="activity.secondsToComplite" /> 
+            <ActivitySecondsToComplete :activity="activity" v-if="activity.secondsToComplete" /> 
         </div>
     </li> 
 </template>

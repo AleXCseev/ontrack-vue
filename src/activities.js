@@ -4,6 +4,12 @@ import { id } from "./functions";
 
 export const activities = ref(generateActivities());
 
+export const trackedActivities = computed(() => {
+  activities.value.filter(({ secondsToComplete }) => secondsToComplete)
+})
+
+console.log(activities.value)
+
 export const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value));
 
 export function deleteActivity(activity) {
@@ -26,6 +32,6 @@ function generateActivities() {
     return ['Codding', 'Reading', 'Training'].map((name, hours) => ({
         id: id(),
         name,
-        secondsToComplite: hours * SECONDS_IN_HOUR
+        secondsToComplete: hours * SECONDS_IN_HOUR
     }))
 }

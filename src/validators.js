@@ -25,7 +25,7 @@ export function isTimelineItemValid({ hour }) {
     return isHourValid(hour)
 }
 
-export function isActivityValid({ id, name, secondsToComplite }) {
+export function isActivityValid({ id, name, secondsToComplete }) {
     if(isNull(id)) {
         return true;
     }
@@ -33,7 +33,7 @@ export function isActivityValid({ id, name, secondsToComplite }) {
     return [
         isNotEmptyString(id),
         isNotEmptyString(name),
-        isNumber(secondsToComplite)
+        isNumber(secondsToComplete)
     ].every(Boolean)
 }
 

@@ -26,7 +26,7 @@ function submit() {
     createActivity({
         id: id(),
         name: name.value,
-        secondsToComplite: 0,
+        secondsToComplete: 0,
     })
 
     name.value = ''

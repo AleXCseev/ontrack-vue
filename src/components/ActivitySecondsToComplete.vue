@@ -28,6 +28,6 @@ const seconds = computed(() => `${sign.value}${formatSeconds(secondsDiff.value)}
 
 const sign = computed(() => secondsDiff.value >= 0 ? '+' : '-')
 
-const secondsDiff = computed(() => getTotalActivitySeconds(props.activity) - props.activity.secondsToComplite)
+const secondsDiff = computed(() => getTotalActivitySeconds(props.activity) - props.activity.secondsToComplete)
 
 </script>
