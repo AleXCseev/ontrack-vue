@@ -8,5 +8,4 @@
 <script setup>
 import ProgressItem from '../components/ProgressItem.vue';
 import { trackedActivities } from '../activities';
-// console.log(trackedActivities.value)
 </script>
